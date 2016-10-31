@@ -11,15 +11,14 @@ $arr = explode(" ", $str);
 
 echo json_encode($arr)."<br>";
 
-$arrtemp = $arr;
-$i = 0;
-$len = count($arr);
+$arrtemp = [];
+$i = count($arr)-1;
 
-while ($i < $len){
-    $arr[$i] = $arrtemp[$len-1-$i];
-    $i++;
+while ($i >= 0){
+    $arrtemp[] = $arr[$i];
+    $i--;
 }
-echo json_encode($arr)."<br>";
+echo json_encode($arrtemp)."<br>";
 
-$str = join("*", $arr);
+$str = join("*", $arrtemp);
 echo $str;
