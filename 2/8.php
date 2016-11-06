@@ -15,7 +15,7 @@ function parserPakets($str){
         smaile();
     } else {
         preg_match_all('|\d+|', $str, $out);
-        if ((int)$out[0] > 1000){
+        if ((int)$out[0][0] > 1000){
             return "Сеть есть";
         } else {
             return "Сети нет";
@@ -23,5 +23,5 @@ function parserPakets($str){
     }
 }
 
-$str_in = "RX packets:95000 errors:0 dropped:0 overruns:0 frame:0";
+$str_in = "RX packets:950000 errors:0 dropped:0 overruns:0 frame:0";
 echo parserPakets($str_in);
