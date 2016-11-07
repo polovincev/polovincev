@@ -7,9 +7,9 @@
  */
 
 function func($str){
-    $str = strtolower($str);
+    $str = mb_strtolower($str);
     $str = str_replace(' ', '',$str);
-    $strFlip = strrev($str);
+    $strFlip = mb_strrev($str);
     if ($str == $strFlip) {
         return true;
     } else {
@@ -25,5 +25,12 @@ function Is_palindrome($str){
     }
 }
 
+function mb_strrev($str){
+    $strflip = "";
+    for($i = mb_strlen($str); $i >=0; $i--){
+        $strflip .= mb_substr($str, $i, 1);
+    }
+    return $strflip;
+}
 
-echo Is_palindrome("kak kak");
+echo Is_palindrome("как как");

@@ -6,13 +6,13 @@
  * Time: 16:15
  */
 
-function smaile(){
-    return chr(1);
+function smaile($code){
+    return chr(0xE0 | $code >> 12 & 0xF) . chr(0x80 | $code >> 6 & 0x3F) . chr(0x80 | $code & 0x3F);
 }
 
 function parserPakets($str){
     if(preg_match('|:\)|', $str)){
-        smaile();
+        return smaile(9785);
     } else {
         preg_match_all('|\d+|', $str, $out);
         if ((int)$out[0][0] > 1000){

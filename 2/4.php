@@ -2,16 +2,21 @@
 
 function func($row, $col){
     if(is_int($row) and $row > 0 and is_int($col) and $col > 0){
+        $ret = '';
+        $ret .= '<table border="1">';
+
         for($i = 1; $i <= $row; $i++){
+            $ret .= '<tr>';
             for ($j = 1; $j <= $col; $j++){
-                $res = $i * $j;
-                echo " $res ";
+                $ret .= '<td>'.$i * $j.'</td>';
             }
-            echo "<br>";
+            $ret .= '</br>';
         }
+        $ret .= '</tabe>';
+        return $ret;
     } else {
-        echo "Не верные параметры";
+        return "Не верные параметры";
     }
 }
 
-func(10, 8);
+echo func(10, 10);

@@ -8,13 +8,12 @@
  * @param $arr
  */
 
-function arithmetic($str, $arr){
+function arithmetic($arr, $str){
     $temp = $arr[0];
     $len = count($arr);
     switch ($str) {
         case "+": {
             for($i = 1; $i < $len; $i++){
-                echo $temp;
                 $temp = $temp + $arr[$i];
             }
             return $temp;
@@ -44,4 +43,4 @@ function arithmetic($str, $arr){
 $do = '*';
 $DataArr = [10, 20, 3, 4];
 
-echo arithmetic($do, $DataArr);
+echo arithmetic($DataArr, $do);
