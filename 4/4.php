@@ -12,8 +12,14 @@ curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
 $str = curl_exec($c);
 curl_close($c);
 
-preg_match('|"title":"(.+?)",|', $str, $title);
-preg_match('|"pageid":(\d+),|', $str, $pageid);
+$arrjson = json_decode($str, true);
+echo '<pre>';
 
-echo 'Title: '. $title[1] . '<br>';
-echo 'Page id: ' . $pageid[1] . '<br>';
+foreach ($arrjson as $value) {
+    foreach ($value as $value) {
+        foreach ($value as $value) {
+            echo 'Title: ' . $value[title] . '<br>';
+            echo 'Page id: ' . $value[pageid] . '<br>';
+        }
+    }
+}
