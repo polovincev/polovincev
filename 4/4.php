@@ -13,13 +13,6 @@ $str = curl_exec($c);
 curl_close($c);
 
 $arrjson = json_decode($str, true);
-echo '<pre>';
 
-foreach ($arrjson as $value) {
-    foreach ($value as $value) {
-        foreach ($value as $value) {
-            echo 'Title: ' . $value[title] . '<br>';
-            echo 'Page id: ' . $value[pageid] . '<br>';
-        }
-    }
-}
+echo 'Title: ' . $arrjson['query']['pages']['15580374']['title'] . '<br>';
+echo 'Page id: ' . $arrjson['query']['pages']['15580374']['pageid'] . '<br>';
