@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(empty($_SESSION['name'])){
+    header('HTTP/1.1 307 Temporary Redirect');
+    header('Location: index.php');
+    exit;
+}
+?>
+
 <html>
     <head>
         <title>Изменение файла</title>

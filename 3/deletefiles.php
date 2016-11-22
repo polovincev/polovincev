@@ -6,20 +6,24 @@
  * Time: 23:15
  */
 require_once 'connect.php';
+session_start();
+if(!empty($_SESSION['name'])) {
+    $filename = $_GET['name'];
 
-$filename = $_GET['name'];
+    $path = 'photos/' . $filename;
 
-$path = 'photos/'.$filename;
+    unlink($path);
 
-unlink($path);
+    $sql = "DELETE FROM file WHERE name = ?";
 
-$sql = "DELETE FROM file WHERE name = ?";
-
-if($stmt = $mysql->prepare($sql)){
-    $stmt->bind_param('s', $filename);
-    $stmt->execute();
+    if ($stmt = $mysql->prepare($sql)) {
+        $stmt->bind_param('s', $filename);
+        $stmt->execute();
     }
 
-header('HTTP/1.1 307 Temporary Redirect');
-header('Location: filelist.php');
-
+    header('HTTP/1.1 307 Temporary Redirect');
+    header('Location: filelist.php');
+} else {
+    header('HTTP/1.1 307 Temporary Redirect');
+    header('Location: index.php');
+}

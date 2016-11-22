@@ -7,28 +7,33 @@
  */
 
 require_once 'connect.php';
+session_start();
+if(!empty($_SESSION['name'])) {
+    $oldname = $_POST['oldname'];
+    $namenew = htmlentities(strip_tags(trim($_POST['name'])), ENT_QUOTES);
 
-$oldname = $_POST['oldname'];
-$namenew = htmlentities(strip_tags(trim($_POST['name'])), ENT_QUOTES);
+    $nawpath = 'photos/' . $namenew;
+    $oldpath = 'photos/' . $oldname;
 
-$nawpath = 'photos/'.$namenew;
-$oldpath = 'photos/'.$oldname;
-
-rename($oldpath, $nawpath);
+    rename($oldpath, $nawpath);
 
 
-$sql = "DELETE FROM file WHERE name = ?";
+    $sql = "DELETE FROM file WHERE name = ?";
 
-if($stmt = $mysql->prepare($sql)){
-    $stmt->bind_param('s', $oldname);
-    $stmt->execute();
+    if ($stmt = $mysql->prepare($sql)) {
+        $stmt->bind_param('s', $oldname);
+        $stmt->execute();
+    }
+
+    $sql = "INSERT INTO file(name) VALUES (?)";
+    if ($stmt = $mysql->prepare($sql)) {
+        $stmt->bind_param('s', $namenew);
+        $stmt->execute();
+    }
+
+    header('HTTP/1.1 307 Temporary Redirect');
+    header('Location: filelist.php');
+} else {
+    header('HTTP/1.1 307 Temporary Redirect');
+    header('Location: index.php');
 }
-
-$sql = "INSERT INTO file(name) VALUES (?)";
-if ($stmt = $mysql->prepare($sql)) {
-    $stmt->bind_param('s', $namenew);
-    $stmt->execute();
-}
-
-header('HTTP/1.1 307 Temporary Redirect');
-header('Location: filelist.php');

@@ -8,6 +8,8 @@
 
 require_once 'connect.php';
 
+session_start();
+
 $name = htmlentities(strip_tags(trim($_POST['name'])), ENT_QUOTES);
 $password = htmlentities(strip_tags(trim($_POST['password'])), ENT_QUOTES);
 
@@ -18,6 +20,7 @@ $result = $mysql->query($sql_catalog);
 $catalogs = $result->fetch_all(MYSQLI_ASSOC);
 
 if($result->num_rows){
+    $_SESSION['name'] = $name;
     header('HTTP/1.1 307 Temporary Redirect');
     header('Location: filelist.php');
 } else {
