@@ -10,9 +10,8 @@ require_once 'connect.php';
 
 session_start();
 
-$name = htmlentities(strip_tags(trim($_POST['name'])), ENT_QUOTES);
-$password = htmlentities(strip_tags(trim($_POST['password'])), ENT_QUOTES);
-
+$name = htmlentities(strip_tags(trim($_POST['fname'])), ENT_QUOTES);
+$password = htmlentities(strip_tags(trim($_POST['fpas'])), ENT_QUOTES);
 
 $sql_catalog = "SELECT * FROM user WHERE name='$name' AND password='$password'";
 $result = $mysql->query($sql_catalog);
@@ -24,6 +23,5 @@ if($result->num_rows){
     header('HTTP/1.1 307 Temporary Redirect');
     header('Location: filelist.php');
 } else {
-    header('HTTP/1.1 307 Temporary Redirect');
-    header('Location: index.php');
+    echo "Не верный логин или пароль";
 }

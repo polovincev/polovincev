@@ -7,6 +7,7 @@
  */
 session_start();
 if(!empty($_SESSION['name'])) {
+
     $filelist = array_diff(scandir("photos"), array('..', '.'));
 
     echo '<table border="1" style="border-collapse: collapse;" cellpadding="7">';
