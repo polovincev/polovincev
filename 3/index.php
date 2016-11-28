@@ -1,7 +1,14 @@
 <?php
 session_start();
 unset($_SESSION['name']);
+
+$error = $_GET['error'];
+if($error == 'true'){
+    echo 'Вы ввели не верный логин или пароль.';
+}
+
 ?>
+
 
 
 <html>

@@ -31,9 +31,9 @@ if(!empty($file) and in_array($file['type'], $types)){
 $sql_catalog = "SELECT * FROM user WHERE name='$name'";
 $result = $mysql->query($sql_catalog);
 if(($result->num_rows) > 0){
-    //echo "<script language=”JavaScript”>Alert(“Hello”);</script>";
+
     header('HTTP/1.1 307 Temporary Redirect');
-    header('Location: reg.php');
+    header('Location: reg.php?error=true');
     exit;
 }
 

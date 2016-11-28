@@ -1,3 +1,11 @@
+<?php
+
+$error = $_GET['error'];
+if($error == 'true'){
+    echo 'Указанное вами имя уже используется.';
+}
+?>
+
 <html>
     <head>
         <title>Добавление пользователя</title>
